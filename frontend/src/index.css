@@ -1,0 +1,247 @@
+:root {
+  --color-bg: #f5f6f8;
+  --color-surface: #ffffff;
+  --color-text: #1f2430;
+  --color-muted: #6b7280;
+  --color-border: #e2e5ea;
+  --color-primary: #4f46e5;
+  --color-primary-hover: #4338ca;
+
+  --color-success-bg: #dcfce7;
+  --color-success-text: #166534;
+  --color-warning-bg: #fef3c7;
+  --color-warning-text: #92400e;
+  --color-danger-bg: #fee2e2;
+  --color-danger-text: #991b1b;
+
+  --radius: 12px;
+  --gap: 1rem;
+
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* Layout */
+
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem var(--gap) 3rem;
+}
+
+.app__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.app__header h1 {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.app__count {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+/* Filters */
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  margin-bottom: 1.5rem;
+  padding: var(--gap);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.filters__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.filters select {
+  padding: 0.6rem 0.75rem;
+  font: inherit;
+  font-weight: 400;
+  color: inherit;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+/* Product grid */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap);
+  transition: opacity 0.15s ease;
+}
+
+.grid--refreshing {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: var(--gap);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.card__category {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.card__name {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.card__price {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* Stock badge */
+
+.badge {
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 999px;
+}
+
+.badge--in_stock {
+  color: var(--color-success-text);
+  background: var(--color-success-bg);
+}
+
+.badge--low_stock {
+  color: var(--color-warning-text);
+  background: var(--color-warning-bg);
+}
+
+.badge--out_of_stock {
+  color: var(--color-danger-text);
+  background: var(--color-danger-bg);
+}
+
+/* Status messages */
+
+.status {
+  padding: 2rem var(--gap);
+  text-align: center;
+  color: var(--color-muted);
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius);
+}
+
+.status--error {
+  color: var(--color-danger-text);
+  background: var(--color-danger-bg);
+  border-style: solid;
+}
+
+/* Pagination */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap);
+  margin-top: 1.5rem;
+}
+
+.pagination__info {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
+.pagination button {
+  padding: 0.6rem 1rem;
+  font: inherit;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--color-primary);
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Tablet and up */
+
+@media (min-width: 600px) {
+  .filters {
+    flex-direction: row;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .pagination {
+    justify-content: center;
+  }
+}
